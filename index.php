@@ -11,9 +11,8 @@ $url2 = 'admin/assets/img/menu/';
             <div class="container">
                 <div class="masthead-subheading"><?=$dados['title1']; ?></div>
                 <div class="masthead-heading text-uppercase"><?=$dados['title2']; ?></div>
-                <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="http://pizzariaimperiouvaranas.com.br/front" style="color: #fff;" target="_blank"><?=$dados['button']; ?></a>
+                <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="http://pizzariaimperiouvaranas.com.br/front" style="background-color: <?=$dados['color_button']; ?>; border-color: <?=$dados['color_button']; ?>; color: #fff;" target="_blank"><?=$dados['button']; ?></a>
             </div>
-            <div class="img-plano"></div>
         </header>
 
         
@@ -41,7 +40,7 @@ $url2 = 'admin/assets/img/menu/';
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1937.7497612433338!2d-39.49478120567461!3d-13.748722885714795!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1125b6fd20a75f36!2sAlbicod!5e0!3m2!1spt-BR!2sbr!4v1570619838140!5m2!1spt-BR!2sbr" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        <?=$dados['google_map']; ?>
                     </div>
                     <div class="col-sm-6">
                         <div class="alert" style="background-color: #fff; height: 300px;">

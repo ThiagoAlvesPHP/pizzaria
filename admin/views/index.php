@@ -31,8 +31,17 @@
 		</div>
 		<label>Botão</label>
 		<input type="text" name="button" value="<?=$home['button']; ?>" class="form-control" required="">
+		<label>Cor do Botão</label>
+		<input type="color" name="color_button" value="<?=$home['color_button']; ?>" class="form-control" required="">
 		<label>Detalhes de Contato</label>
 		<textarea class="form-control" id="conteudo" name="detalhes_contato" required=""><?=$home['detalhes_contato']; ?></textarea>
+		<label>Google Maps</label>
+		<textarea class="form-control"  style="height: 100px;" name="google_map" required=""><?=$home['google_map']; ?></textarea>
+
+		<label>Link Facebook</label>
+		<input type="text" name="link_face" value="<?=$home['link_face']; ?>" class="form-control" required="">
+		<label>Link Instagram</label>
+		<input type="text" name="link_instagram" value="<?=$home['link_instagram']; ?>" class="form-control" required="">
 	<?php else: ?>
 		<div class="row">
 			<div class="col-sm-6">
@@ -62,8 +71,16 @@
 		</div>
 		<label>Botão</label>
 		<input type="text" name="button" class="form-control" required="">
+		<label>Cor do Botão</label>
+		<input type="color" name="color_button" class="form-control" required="">
 		<label>Detalhes de Contato</label>
 		<textarea class="form-control" id="conteudo" name="detalhes_contato" required=""></textarea>
+		<label>Google Maps</label>
+		<textarea class="form-control" name="google_map" required=""></textarea>
+		<label>Link Facebook</label>
+		<input type="text" name="link_face" class="form-control" required="">
+		<label>Link Instagram</label>
+		<input type="text" name="link_instagram" class="form-control" required="">
 	<?php endif; ?>
 	<br>
 	<button class="btn btn-success">Salvar</button>

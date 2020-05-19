@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Maio-2020 às 11:09
+-- Tempo de geração: 19-Maio-2020 às 20:38
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.2.29
 
@@ -55,7 +55,11 @@ CREATE TABLE `home` (
   `title1` varchar(100) NOT NULL,
   `title2` varchar(100) NOT NULL,
   `button` varchar(100) NOT NULL,
+  `color_button` varchar(100) NOT NULL,
   `detalhes_contato` text NOT NULL,
+  `google_map` text NOT NULL,
+  `link_face` varchar(150) NOT NULL,
+  `link_instagram` varchar(150) NOT NULL,
   `id_user` int(11) NOT NULL,
   `date_register` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -64,8 +68,8 @@ CREATE TABLE `home` (
 -- Extraindo dados da tabela `home`
 --
 
-INSERT INTO `home` (`id`, `image1`, `image2`, `title1`, `title2`, `button`, `detalhes_contato`, `id_user`, `date_register`) VALUES
-(1, '2dae8ccbe68a4cb6a1a07729d9552cd3.png', '5c616e9ed839eefa0eb22e95be2b3c19.png', 'Seja Bem-vindo!', 'PIZZA É AQUI!', 'Peça Agora', '<p>Pc Mario Andreazza&nbsp;- N&ordm; 130&nbsp;Centro<br />\r\nTelefone: (73) 3254-0606<br />\r\nCelular:: (73) 9 9917-9660<br />\r\nE-mail:&nbsp;<a href=\"mailto:name@example.com\">callnetba@hotmail.com</a></p>\r\n\r\n<p>Funcionamento:<br />\r\nSegunda - Sexta<br />\r\n9h &agrave;s 12h &amp; 14h &agrave;s 16h</p>\r\n', 1, '2020-05-17 11:43:15');
+INSERT INTO `home` (`id`, `image1`, `image2`, `title1`, `title2`, `button`, `color_button`, `detalhes_contato`, `google_map`, `link_face`, `link_instagram`, `id_user`, `date_register`) VALUES
+(1, '2dae8ccbe68a4cb6a1a07729d9552cd3.png', '5c616e9ed839eefa0eb22e95be2b3c19.png', 'Seja Bem-vindo!', 'PIZZA É AQUI!', 'Peça Agora', '#dc3545', '<p>Pc Mario Andreazza&nbsp;- N&ordm; 130&nbsp;Centro<br />\r\nTelefone: (73) 3254-0606<br />\r\nCelular:: (73) 9 9917-9660<br />\r\nE-mail:&nbsp;<a href=\"mailto:name@example.com\">callnetba@hotmail.com</a></p>\r\n\r\n<p>Funcionamento:<br />\r\nSegunda - Sexta<br />\r\n9h &agrave;s 12h &amp; 14h &agrave;s 16h</p>\r\n', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1937.7497612433338!2d-39.49478120567461!3d-13.748722885714795!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1125b6fd20a75f36!2sAlbicod!5e0!3m2!1spt-BR!2sbr!4v1570619838140!5m2!1spt-BR!2sbr\" width=\"100%\" height=\"300\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\"></iframe>', '#', '#', 1, '2020-05-17 11:43:15');
 
 -- --------------------------------------------------------
 
