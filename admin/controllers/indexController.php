@@ -86,7 +86,8 @@ class indexController extends controller {
 			echo '<script> alert("Deletado com sucesso!"); window.location.href = "'.BASE.'index/promotions"; </script>';
 		}
 
-		if (!empty($post)) {
+		//registrar
+		if (!empty($post['title'])) {
 			//verifica se o arquivo é jpeg
 			if ($_FILES['image']['type'] == 'image/jpeg') {
 				$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
@@ -97,6 +98,28 @@ class indexController extends controller {
 			} else {
 				echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/promotions"; </script>';
 			}
+		}
+
+		//atualizar
+		if (!empty($post['titleUp'])) {
+
+			if ($_FILES['imageUp']['size'] > 0) {
+				//verifica se o arquivo é jpeg
+				if ($_FILES['imageUp']['type'] == 'image/jpeg') {
+					if (file_exists($caminho.$post['imageOut'])) {
+						unlink($caminho.$post['imageOut']);
+					}
+					$_FILES['image'] = $_FILES['imageUp'];
+					$arquivo = md5($_FILES['imageUp']['tmp_name'].time().rand(0,999)).'.jpeg';
+					$post['imageUp'] = $arquivo;
+					$i->img(500, 400, $caminho, $arquivo);
+				} else {
+					echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/promotions"; </script>';
+				}
+			}
+			
+			$h->upPromotion($post);
+			echo '<script> alert("Atualizado com sucesso!"); window.location.href = "'.BASE.'index/promotions"; </script>';
 		}
 
 		$dados['list'] = $h->getAllPromotions();
@@ -110,9 +133,14 @@ class indexController extends controller {
 		$post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 		$get = filter_input_array(INPUT_GET, FILTER_DEFAULT);
 
-		if (!empty($post)) {
+		if (!empty($post['text1'])) {
 			$h->setCarousel($post);
 			echo '<script> alert("Cadastro realizado com sucesso!"); window.location.href = "'.BASE.'index/carousel"; </script>';
+		}
+
+		if (!empty($post['text1Up'])) {
+			$h->upCarousel($post);
+			echo '<script> alert("Atualizado com sucesso!"); window.location.href = "'.BASE.'index/carousel"; </script>';
 		}
 
 		if (!empty($get['id'])) {

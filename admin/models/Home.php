@@ -109,6 +109,28 @@ class Home extends model{
 
 		return $sql->fetch(PDO::FETCH_ASSOC);
 	}
+	public function upPromotion($post){
+
+		$sql = 'UPDATE promotions SET ';
+
+		if ($_FILES['imageUp']['size'] > 0) {
+			$sql .= 'image = :image, ';
+		}
+
+		$sql .= '
+				title = :title
+				WHERE id = :id';
+		$sql = $this->db->prepare($sql);
+		if ($_FILES['imageUp']['size'] > 0) {
+			$sql->bindValue(':image', $post['imageUp']);
+		} 
+
+		$sql->bindValue(':title', $post['titleUp']);
+		$sql->bindValue(':id', $post['idUp']);
+
+		$sql->execute();
+
+	}
 	public function delPromotion($id){
 		$sql = $this->db->prepare("DELETE FROM promotions WHERE id = :id");
 		$sql->bindValue(':id', $id);
@@ -132,6 +154,20 @@ class Home extends model{
 			');
 		$sql->bindValue(':text1', $post['text1']);
 		$sql->bindValue(':text2', $post['text2']);
+		$sql->execute();
+	}
+	public function upCarousel($post){
+
+		$sql = $this->db->prepare('
+			UPDATE carousel
+			SET 
+			text1 = :text1,
+			text2 = :text2
+			WHERE id = :id
+			');
+		$sql->bindValue(':text1', $post['text1Up']);
+		$sql->bindValue(':text2', $post['text2Up']);
+		$sql->bindValue(':id', $post['idUp']);
 		$sql->execute();
 	}
 	public function delCarousel($id){
