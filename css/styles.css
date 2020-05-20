@@ -69,6 +69,40 @@ body {
   background-color: #fff;
 }
 
+.promocoes img:hover{
+  opacity: 0.7;
+}
+
+.zoom {
+  overflow: hidden;
+}
+.zoom img {
+  width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.zoom:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.text-item {
+  font-size: 30px;
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
@@ -9854,35 +9888,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 .invisible {
   visibility: hidden !important;
-}
-
-.zoom {
-  overflow: hidden;
-}
-.zoom img {
-  width: 100%;
-  -moz-transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.zoom:hover img {
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-.text-item {
-  font-size: 30px;
-  position: absolute;
-  left: 5%;
-  right: 5%;
-  bottom: 20px;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #ffffff;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 @media print {

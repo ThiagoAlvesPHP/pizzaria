@@ -1,7 +1,7 @@
 <?php
 class Home extends model{
 
-	//registrar about
+	//registrar home
 	public function set($post){
 
 		$sql = $this->db->prepare('
@@ -81,5 +81,130 @@ class Home extends model{
 		$sql->bindValue(':id', $post['id']);
 
 		$sql->execute();	
+	}
+
+	//promoções
+	public function setPromotions($post){
+
+		$sql = $this->db->prepare('
+			INSERT INTO promotions
+			SET 
+			image = :image,
+			title = :title
+			');
+		$sql->bindValue(':image', $post['image']);
+		$sql->bindValue(':title', $post['title']);
+		$sql->execute();
+	}
+	public function getAllPromotions(){
+		$sql = $this->db->prepare("SELECT * FROM promotions");
+		$sql->execute();
+
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	public function getPromotion($id){
+		$sql = $this->db->prepare("SELECT * FROM promotions WHERE id = :id");
+		$sql->bindValue(':id', $id);
+		$sql->execute();
+
+		return $sql->fetch(PDO::FETCH_ASSOC);
+	}
+	public function delPromotion($id){
+		$sql = $this->db->prepare("DELETE FROM promotions WHERE id = :id");
+		$sql->bindValue(':id', $id);
+		$sql->execute();
+	}
+
+	//caroousel
+	public function getAllCarousel(){
+		$sql = $this->db->prepare("SELECT * FROM carousel");
+		$sql->execute();
+
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	public function setCarousel($post){
+
+		$sql = $this->db->prepare('
+			INSERT INTO carousel
+			SET 
+			text1 = :text1,
+			text2 = :text2
+			');
+		$sql->bindValue(':text1', $post['text1']);
+		$sql->bindValue(':text2', $post['text2']);
+		$sql->execute();
+	}
+	public function delCarousel($id){
+		$sql = $this->db->prepare("DELETE FROM carousel WHERE id = :id");
+		$sql->bindValue(':id', $id);
+		$sql->execute();
+	}
+
+	//descrição
+	public function getDescription(){
+		$sql = $this->db->prepare("SELECT * FROM description");
+		$sql->execute();
+
+		return $sql->fetch(PDO::FETCH_ASSOC);
+	}
+	public function setDescription($post){
+
+		$sql = $this->db->prepare('
+			INSERT INTO description
+			SET 
+			image = :image,
+			texto = :texto
+			');
+		$sql->bindValue(':image', $post['image']);
+		$sql->bindValue(':texto', $post['texto']);
+		$sql->execute();
+	}
+	public function upDescription($post){
+
+		$sql = 'UPDATE description SET ';
+
+		if ($_FILES['image']['size'] > 0) {
+			$sql .= 'image = :image, ';
+		}
+
+		$sql .= '
+				texto = :texto
+				WHERE id = :id';
+		$sql = $this->db->prepare($sql);
+		if ($_FILES['image']['size'] > 0) {
+			$sql->bindValue(':image', $post['image']);
+		} 
+
+		$sql->bindValue(':texto', $post['texto']);
+		$sql->bindValue(':id', $post['id']);
+
+		$sql->execute();
+
+	}
+
+	//descrição
+	public function getBanner(){
+		$sql = $this->db->prepare("SELECT * FROM banner");
+		$sql->execute();
+
+		return $sql->fetch(PDO::FETCH_ASSOC);
+	}
+	public function upBanner($post){
+
+		$sql = 'UPDATE banner SET image = :image WHERE id = :id';
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':image', $post['image']);
+		$sql->bindValue(':id', $post['id']);
+
+		$sql->execute();
+	}
+
+	public function setBanner($post){
+
+		$sql = 'INSERT INTO banner SET image = :image';
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':image', $post['image']);
+
+		$sql->execute();
 	}
 }

@@ -53,6 +53,14 @@ $seller = $u->get($_SESSION['lg']);
             <li class="divider"></li>
             <li><a href="<?=BASE; ?>index">HOME</a></li>
             <li class="divider"></li>
+            <li><a href="<?=BASE; ?>index/promotions">HOME - Promoções</a></li>
+            <li class="divider"></li>
+            <li><a href="<?=BASE; ?>index/carousel">HOME - Carousel</a></li>
+            <li class="divider"></li>
+            <li><a href="<?=BASE; ?>index/description">HOME - Descrição</a></li>
+            <li class="divider"></li>
+            <li><a href="<?=BASE; ?>index/banner">HOME - Banner</a></li>
+            <li class="divider"></li>
             <li><a href="<?=BASE; ?>about">SOBRE</a></li>
             <li class="divider"></li>
             <li><a href="<?=BASE; ?>menu">CARDÁPIO</a></li>

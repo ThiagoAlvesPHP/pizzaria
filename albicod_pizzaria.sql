@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Maio-2020 às 20:38
+-- Tempo de geração: 20-Maio-2020 às 04:04
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.2.29
 
@@ -41,6 +41,64 @@ CREATE TABLE `about` (
 
 INSERT INTO `about` (`id`, `image`, `description`, `id_user`, `date_register`) VALUES
 (1, '30dfee09ac32d8278f2e269fce2de711.jpeg', '<h1><em><strong>Pizzaria</strong></em></h1>\r\n\r\n<h3><strong>O lugar perfeito para aproveitar a vida e a comida.</strong></h3>\r\n\r\n<p>Fundado pela 1&ordf; gera&ccedil;&atilde;o de imigrantes da Sic&iacute;lia, este restaurante italiano tornou-se rapidamente um local b&aacute;sico.Com uma incr&iacute;vel variedade de pratos italianos de tradi&ccedil;&otilde;es cl&aacute;ssicas e modernas, come&ccedil;ando com pizzas e massas e todo o caminho at&eacute; o celuccio e o annianto, nosso menu se destaca!</p>\r\n', 1, '2020-05-17 01:52:13');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `banner`
+--
+
+INSERT INTO `banner` (`id`, `image`) VALUES
+(2, '919fa732f70c405cacc0a6d23027dfcd.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carousel`
+--
+
+CREATE TABLE `carousel` (
+  `id` int(11) NOT NULL,
+  `text1` varchar(150) NOT NULL,
+  `text2` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `carousel`
+--
+
+INSERT INTO `carousel` (`id`, `text1`, `text2`) VALUES
+(1, 'Parabéns você é nosso melhos cliente 1', 'Parabéns 1'),
+(2, 'Parabéns você é nosso melhos cliente 2', 'Parabéns 2'),
+(3, 'Parabéns você é nosso melhos cliente 3', 'Parabéns 3');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `description`
+--
+
+CREATE TABLE `description` (
+  `id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `texto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `description`
+--
+
+INSERT INTO `description` (`id`, `image`, `texto`) VALUES
+(1, 'ddd8347def65423767d82abbb5bd41a8.jpeg', '<h2>SPECIALS*</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut.</p>\r\n\r\n<p>$10</p>\r\n\r\n<h3>COMBO PICCOLO</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut aliquam dui.</p>\r\n\r\n<p>$20</p>\r\n\r\n<h3>COMBO MEZZO</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut aliquam dui.</p>\r\n\r\n<p>$30</p>\r\n\r\n<h3>COMBO GRANDE</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut aliquam dui.</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -93,7 +151,30 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`id`, `image`, `title`, `description`, `id_user`, `date_register`) VALUES
 (2, 'bf85b88c877ca5d95a8ea238bcca4145.jpeg', 'Pizza de Teste', '<blockquote>\r\n<p>123456789</p>\r\n</blockquote>\r\n', 1, '2020-05-17 10:19:39'),
 (4, '300745039760f70f772c245105f18714.jpeg', 'Pizza de Teste 2', '<blockquote>\r\n<p>123456789</p>\r\n</blockquote>\r\n', 1, '2020-05-17 10:20:06'),
-(6, '6cc89bc6576948942b58a15abf0df573.jpeg', 'Pizza de Teste 4', '<p>123456789</p>\r\n', 1, '2020-05-17 12:30:18');
+(6, 'b21c802da0712e48f639a88b07f82efb.jpeg', 'Pizza de Teste 4', '<p>123456789</p>\r\n', 1, '2020-05-17 12:30:18'),
+(7, '2173113839974d7608c91f649c67dfc4.jpeg', 'Pizza de Teste 3', '<p>Mais uma pizza</p>\r\n', 1, '2020-05-19 22:52:49');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `promotions`
+--
+
+CREATE TABLE `promotions` (
+  `id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `title` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `promotions`
+--
+
+INSERT INTO `promotions` (`id`, `image`, `title`) VALUES
+(8, 'a6d693b23405c446e81fba2a4adc4eab.jpeg', 'Teste 01'),
+(9, 'c41488e32880833ebe3740e4981ea14a.jpeg', 'Teste 02'),
+(10, '07ddbefda2b48cd2276ca7b4cf8d5008.jpeg', 'Teste 03'),
+(11, '69e9fa3164c8cf15480ade4e643651b3.jpeg', 'Teste 04');
 
 -- --------------------------------------------------------
 
@@ -146,6 +227,24 @@ ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `carousel`
+--
+ALTER TABLE `carousel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `description`
+--
+ALTER TABLE `description`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `home`
 --
 ALTER TABLE `home`
@@ -155,6 +254,12 @@ ALTER TABLE `home`
 -- Índices para tabela `menu`
 --
 ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `promotions`
+--
+ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -180,6 +285,24 @@ ALTER TABLE `about`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `carousel`
+--
+ALTER TABLE `carousel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `description`
+--
+ALTER TABLE `description`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `home`
 --
 ALTER TABLE `home`
@@ -189,7 +312,13 @@ ALTER TABLE `home`
 -- AUTO_INCREMENT de tabela `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `promotions`
+--
+ALTER TABLE `promotions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tracking`

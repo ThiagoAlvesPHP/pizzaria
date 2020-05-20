@@ -65,4 +65,158 @@ class indexController extends controller {
 
 		$this->loadTemplate('index', $dados);
 	}
+
+	public function promotions(){
+		$dados = array();
+		$i = new Image();
+		$h = new Home();
+		$caminho = 'assets/img/home/promocoes/';
+		$dados['url'] = $caminho;
+
+		$post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+		$get = filter_input_array(INPUT_GET, FILTER_DEFAULT);
+
+		//deletando cardapio e sua imagem
+		if (!empty($get['id'])) {
+			$promotions = $h->getPromotion($get['id']);
+			if (file_exists($caminho.$promotions['image'])) {
+				unlink($caminho.$promotions['image']);
+			}
+			$h->delPromotion($get['id']);
+			echo '<script> alert("Deletado com sucesso!"); window.location.href = "'.BASE.'index/promotions"; </script>';
+		}
+
+		if (!empty($post)) {
+			//verifica se o arquivo é jpeg
+			if ($_FILES['image']['type'] == 'image/jpeg') {
+				$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
+				$post['image'] = $arquivo;
+				$i->img(500, 400, $caminho, $arquivo);
+				$h->setPromotions($post);
+				echo '<script> alert("Cadastro realizado com sucesso!"); window.location.href = "'.BASE.'index/promotions"; </script>';
+			} else {
+				echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/promotions"; </script>';
+			}
+		}
+
+		$dados['list'] = $h->getAllPromotions();
+		$this->loadTemplate('promotions', $dados);
+	}
+
+	public function carousel(){
+		$dados = array();
+		$h = new Home();
+
+		$post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+		$get = filter_input_array(INPUT_GET, FILTER_DEFAULT);
+
+		if (!empty($post)) {
+			$h->setCarousel($post);
+			echo '<script> alert("Cadastro realizado com sucesso!"); window.location.href = "'.BASE.'index/carousel"; </script>';
+		}
+
+		if (!empty($get['id'])) {
+			$h->delCarousel($get['id']);
+			echo '<script> alert("Deletado com sucesso!"); window.location.href = "'.BASE.'index/carousel"; </script>';
+		}
+
+		$dados['list'] = $h->getAllCarousel();
+		$this->loadTemplate('carousel', $dados);
+	}
+
+	public function description(){
+		$dados = array();
+		$h = new Home();
+		$i = new Image();
+
+		$caminho = 'assets/img/home/descricoes/';
+		$dados['get'] = $h->getDescription();
+
+		$post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+		$get = filter_input_array(INPUT_GET, FILTER_DEFAULT);
+
+		if (!empty($post)) {
+			if (!empty($post['up'])) {
+				$post['id'] = $post['up'];
+
+				if ($_FILES['image']['size'] > 0) {
+					if ($_FILES['image']['type'] == 'image/jpeg') {
+						if (file_exists($caminho.$dados['get']['image'])) {
+							unlink($caminho.$dados['get']['image']);
+						}
+						$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
+						$post['image'] = $arquivo;
+						$i->img(1000, 1000, $caminho, $arquivo);
+					}  else {
+						echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/description"; </script>';
+					}
+				}
+				$h->upDescription($post);
+				echo '<script> alert("Alteração realizada com sucesso!"); window.location.href = "'.BASE.'index/description"; </script>';
+			} else {
+				//verifica se o arquivo é jpeg
+				if ($_FILES['image']['type'] == 'image/jpeg') {
+					$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
+					$post['image'] = $arquivo;
+					$i->img(500, 400, $caminho, $arquivo);
+					$h->setDescription($post);
+					echo '<script> alert("Cadastro realizado com sucesso!"); window.location.href = "'.BASE.'index/description"; </script>';
+				} else {
+					echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/description"; </script>';
+				}
+			}
+
+
+		}
+
+		$this->loadTemplate('description', $dados);
+	}
+
+	public function banner(){
+		$dados = array();
+		$h = new Home();
+		$i = new Image();
+
+		$caminho = 'assets/img/home/banner/';
+		$dados['url'] = $caminho;
+		$dados['get'] = $h->getBanner();
+
+		$post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+		if (!empty($post)) {
+			if (!empty($post['up'])) {
+				$post['id'] = $post['up'];
+
+				if ($_FILES['image']['size'] > 0) {
+					if ($_FILES['image']['type'] == 'image/jpeg') {
+						if (file_exists($caminho.$dados['get']['image'])) {
+							unlink($caminho.$dados['get']['image']);
+						}
+						$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
+						$post['image'] = $arquivo;
+						$i->img(1500, 800, $caminho, $arquivo);
+					}  else {
+						echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/banner"; </script>';
+					}
+				}
+				$h->upBanner($post);
+				echo '<script> alert("Alteração realizada com sucesso!"); window.location.href = "'.BASE.'index/banner"; </script>';
+			} else {
+				//verifica se o arquivo é jpeg
+				if ($_FILES['image']['type'] == 'image/jpeg') {
+					$arquivo = md5($_FILES['image']['tmp_name'].time().rand(0,999)).'.jpeg';
+					$post['image'] = $arquivo;
+					$i->img(1500, 1500, $caminho, $arquivo);
+					$h->setBanner($post);
+					echo '<script> alert("Cadastro realizado com sucesso!"); window.location.href = "'.BASE.'index/banner"; </script>';
+				} else {
+					echo '<script> alert("Formato de arquivo não permitido!"); window.location.href = "'.BASE.'index/banner"; </script>';
+				}
+			}
+
+
+		}
+
+		$this->loadTemplate('banner', $dados);
+	}
 }
